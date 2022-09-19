@@ -2,8 +2,12 @@ import os
 
 from appium.options.android import UiAutomator2Options
 
-userName = os.getenv('userName')
+userName = os.getenv('userNameBS')
 accessKey = os.getenv('accessKey')
+
+def test_sad():
+    print(userName)
+    print(accessKey)
 
 def browser_options():
     browser_options = UiAutomator2Options().load_capabilities({

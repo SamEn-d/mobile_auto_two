@@ -1,16 +1,17 @@
+import os
+
 from appium import webdriver
 from appium.webdriver.common.appiumby import AppiumBy
 from selene import have, be
 from selene.support.shared import browser
-from mobile_auto_browserstack.browser_options import browser_options, browser_options_loc
+from mobile_auto_browserstack.browser_options import browser_options
 
-from appium.options.android import UiAutomator2Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
 
-from tests.config import video_from_browserstack
+from config import video_from_browserstack
 
+userName = os.getenv('userNameBS')
+accessKey = os.getenv('accessKey')
 
 
 def test_wiki_in_documentation():
@@ -25,7 +26,7 @@ def test_wiki_post_open():
     browser.config.driver = webdriver.Remote("http://hub.browserstack.com/wd/hub", options=browser_options())
     # browser.config.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", options=browser_options_loc())
     time.sleep(1)
-    browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
+    # browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click()
     browser.element((AppiumBy.ACCESSIBILITY_ID, "Search Wikipedia")).click()
     browser.element((AppiumBy.ID, "org.wikipedia.alpha:id/search_src_text")).type('Selene')
     browser.all((AppiumBy.CLASS_NAME, "android.widget.TextView")).with_(timeout=10).should(be.visible)
