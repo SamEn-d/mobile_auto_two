@@ -9,3 +9,7 @@ config.personal.env
 demo
 browserstack_sample.py
 .env
+
+config.browserstack.env
+allure-results
+venv
